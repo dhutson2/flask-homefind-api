@@ -17,7 +17,7 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(userId):
     try:
-        return models.User.get(models.user.id == userId)
+        return models.User.get(models.User.id == userId)
     except models.DoesNotExist:
         return None
 
@@ -25,7 +25,7 @@ def load_user(userId):
 # CORS(user, origins=["http://localhost:3000"], supports_credentials=True)
 
 
-@app.register_blueprint(user)
+app.register_blueprint(user)
 @app.before_request
 def before_request():
     g.db = models.DATABASE
